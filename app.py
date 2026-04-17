@@ -94,10 +94,12 @@ def aluno_get_id(id):
 @app.route("/alunos/cpf/<cpf>", methods=["GET"])
 def aluno_get_cpf(cpf):
     lista = db.collection("alunos").where("cpf","==",cpf).select(["nome","cpf","status"]).stream() #stream() para pegar todos os dados da coleção "alunos" (listar)
-
-    for item in lista:
-        return jsonify(item.to_dict()), 200
-    return jsonify({ 'message': 'Aluno não encontrado!' }), 404
+    
+    alunos = [item.to_dict() for item in lista]
+        
+    if not alunos:
+        return jsonify({'message': 'Aluno não encontrado!'}), 404
+    return jsonify(alunos), 200
 
 #rota para validar se o aluno está ativo ou não atraves do cpf (GET /alunos/validar)
 @app.route("/alunos/validar", methods=["GET"])
