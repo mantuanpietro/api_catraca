@@ -93,7 +93,7 @@ def aluno_get_id(id):
 #Rota para pegar um aluno específico por cpf (GET /alunos/<cpf>)
 @app.route("/alunos/cpf/<cpf>", methods=["GET"])
 def aluno_get_cpf(cpf):
-    lista = db.collection("alunos").where("cpf","==",cpf).select(["nome","cpf"]).stream() #stream() para pegar todos os dados da coleção "alunos" (listar)
+    lista = db.collection("alunos").where("cpf","==",cpf).select(["nome","cpf","status"]).stream() #stream() para pegar todos os dados da coleção "alunos" (listar)
 
     for item in lista:
         return jsonify(item.to_dict()), 200
