@@ -256,7 +256,6 @@ A API retorna erros padronizados:
 * 🔑 Autenticação completa com JWT
 * 📈 Logs de acesso à catraca
 * 🧾 Histórico de entradas/saídas
-* 🧑‍💼 Painel administrativo
 * 📄 Documentação com Swagger (Flasgger)
 
 ---
